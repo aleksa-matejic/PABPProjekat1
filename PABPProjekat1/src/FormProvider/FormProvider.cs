@@ -1,4 +1,6 @@
-﻿using PABPProjekat1.src.Login;
+﻿using PABPProjekat1.src.UpdateSupplier;
+using PABPProjekat1.src.Categories;
+using PABPProjekat1.src.Login;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,23 +9,82 @@ using System.Threading.Tasks;
 
 namespace PABPProjekat1.src.FormProvider
 {
-    // Aleksa: implementation of Singleton pattern over the main form I am using in this application
+    // Aleksa: implementation of Singleton pattern over the forms I am using in this application
     public class FormProvider
     {
-        public static LoginForm Instance
+        #region LoginForm
+
+        public static LoginForm LoginForm
         {
             get
             {
-                if (instance == null)
+                if (loginForm == null)
                 {
-                    instance = new LoginForm();
+                    loginForm = new LoginForm();
                 }
-                return instance;
+                return loginForm;
+            }
+
+        }
+
+        private static LoginForm loginForm;
+
+        #endregion
+
+        #region CategoriesForm
+
+        public static CategoriesForm CategoriesForm
+        {
+            get
+            {
+                if (categoriesForm == null)
+                {
+                    categoriesForm = new CategoriesForm();
+                }
+                return categoriesForm;
+            }
+
+            set
+            {
+                categoriesForm = value;
             }
         }
 
-        private static LoginForm instance;
+        public static CategoriesForm GetCategoriesForm()
+        {
+            return categoriesForm;
+        }
 
-        private FormProvider() { }
+        private static CategoriesForm categoriesForm;
+
+        #endregion
+
+        #region UpdateSupplierForm
+
+        public static UpdateSupplierForm UpdateSupplierForm
+        {
+            get
+            {
+                if (updateSupplierForm == null)
+                {
+                    updateSupplierForm = new UpdateSupplierForm();
+                }
+                return updateSupplierForm;
+            }
+
+            set
+            {
+                updateSupplierForm = value;
+            }
+        }
+
+        public static UpdateSupplierForm GetUpdateSupplierForm()
+        {
+            return updateSupplierForm;
+        }
+
+        private static UpdateSupplierForm updateSupplierForm;
+
+        #endregion
     }
 }

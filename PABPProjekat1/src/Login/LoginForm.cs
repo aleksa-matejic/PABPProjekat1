@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using PABPProjekat1.src.DB;
+using PABPProjekat1.src.Session;
 
 namespace PABPProjekat1.src.Login
 {
@@ -38,6 +39,17 @@ namespace PABPProjekat1.src.Login
 
             // Aleksa: password inputed characters will be displayed as *
             tbPassword.PasswordChar = '*';
+
+            // Aleksa TODO: ask if session is active and go to categories automatically
+
+            // Aleksa TODO: for testing purposes only, comment this for production
+            // tbUsername.Text = "Exotic Liquids";
+            // tbPassword.Text = "1715552222EC14SD";
+
+            tbUsername.Text = "Cisco";
+            tbPassword.Text = "064249189811130";
+
+            // Aleksa TODO: use session for populating username field
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -86,7 +98,15 @@ namespace PABPProjekat1.src.Login
                     if (string.Equals(tbPassword.Text, supplier.Password))
                     {
                         // Aleksa TODO: proceed with login
-                        MessageBox.Show("Login successful!");
+                        // MessageBox.Show("Login successful!");
+
+                        UserSession.Instance.Username = supplier.CompanyName;
+                        UserSession.Instance.SupplierID = supplier.SupplierID;
+                        UserSession.Instance.IsActive = true;
+
+                        FormProvider.FormProvider.LoginForm.Hide();
+
+                        FormProvider.FormProvider.CategoriesForm.Show();
                     }
                     else
                     {

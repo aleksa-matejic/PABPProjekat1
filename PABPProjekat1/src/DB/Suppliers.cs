@@ -35,6 +35,49 @@ namespace PABPProjekat1.src.DB
 
             return s;
         }
+
+        public static int UpdateSupplier(string companyName, Supplier updatedSupplier)
+        {
+            // Aleksa TODO: update supplier by standards of ADO.NET
+            int res = -1;
+
+            using (SqlConnection conn = DB.GetConnection())
+            {
+                using (SqlCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"UPDATE Suppliers
+                                           SET CompanyName = '{0}'
+                                              ,ContactName = '{1}'
+                                              ,ContactTitle = '{2}'
+                                              ,Address = '{3}'
+                                              ,City = '{4}'
+                                              ,Region = '{5}'
+                                              ,PostalCode = '{6}'
+                                              ,Country = '{7}'
+                                              ,Phone = '{8}'
+                                              ,Fax = '{9}'
+                                              ,HomePage = '{10}'
+                                         WHERE CompanyName = '{0}';";
+
+                    cmd.CommandText = string.Format(cmd.CommandText, 
+                        companyName.ToString(), 
+                        updatedSupplier.ContactName,
+                        updatedSupplier.ContactTitle,
+                        updatedSupplier.Address,
+                        updatedSupplier.City,
+                        updatedSupplier.Region,
+                        updatedSupplier.PostalCode,
+                        updatedSupplier.Country,
+                        updatedSupplier.Phone,
+                        updatedSupplier.Fax,
+                        updatedSupplier.HomePage);
+
+                    res = cmd.ExecuteNonQuery();
+                }
+
+                return res;
+            }
+        }
     }
 
     public class Supplier

@@ -17,7 +17,7 @@ namespace PABPProjekat1
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(FormProvider.Instance);
+            Application.Run(FormProvider.LoginForm);
         }
     }
 }
