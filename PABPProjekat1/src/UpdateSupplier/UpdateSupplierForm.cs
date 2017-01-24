@@ -51,8 +51,6 @@ namespace PABPProjekat1.src.UpdateSupplier
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            // Aleksa TODO: implement update
-
             // Aleksa: enabling textboxes and disabling update button
             foreach (Control x in this.Controls)
             {
@@ -71,7 +69,7 @@ namespace PABPProjekat1.src.UpdateSupplier
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            // Aleksa TODO: implement save
+            // Aleksa: save changes to database
             int res = -1;
             try
             {

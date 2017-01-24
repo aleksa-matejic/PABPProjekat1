@@ -115,9 +115,7 @@ namespace PABPProjekat1.src.Categories
 
         private void lblUsername_Click(object sender, EventArgs e)
         {
-            // Aleksa TODO: create update supplier form and invoke it
-            // MessageBox.Show("Update supplier invoked!");
-
+            // Aleksa: invoke update supplier form
             FormProvider.FormProvider.UpdateSupplierForm.Show();
             FormProvider.FormProvider.UpdateSupplierForm.Focus();
         }

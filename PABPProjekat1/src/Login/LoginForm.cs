@@ -98,7 +98,7 @@ namespace PABPProjekat1.src.Login
                 {
                     if (string.Equals(tbPassword.Text, supplier.Password))
                     {
-                        // Aleksa TODO: proceed with login
+                        // Aleksa: proceed with login
                         // MessageBox.Show("Login successful!");
 
                         UserSession.Instance.Username = supplier.CompanyName;

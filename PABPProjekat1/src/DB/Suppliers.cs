@@ -31,73 +31,6 @@ namespace PABPProjekat1.src.DB
             }
 
             return s;
-
-            // Aleksa TODO: delete old code
-            /*Supplier s = null;
-
-            using (SqlConnection conn = DB.GetConnection())
-            {
-                using (SqlCommand cmd = conn.CreateCommand())
-                {
-                    cmd.CommandText = @"SELECT * FROM Suppliers WHERE CompanyName = '{0}';";
-
-                    cmd.CommandText = string.Format(cmd.CommandText, companyName.ToString());
-
-                    SqlDataReader reader = cmd.ExecuteReader();
-
-                    if (reader.Read())
-                    {
-                        s = new Supplier();
-                        s.Load(reader);
-                    }
-                }
-            }
-
-            return s;*/
-        }
-
-        // Aleksa TODO: delete this method
-        public static int UpdateSupplier(string companyName, Supplier updatedSupplier)
-        {
-            // Aleksa TODO: update supplier by standards of ADO.NET
-            int res = -1;
-
-            using (SqlConnection conn = DB.GetConnection())
-            {
-                using (SqlCommand cmd = conn.CreateCommand())
-                {
-                    cmd.CommandText = @"UPDATE Suppliers
-                                           SET CompanyName = '{0}'
-                                              ,ContactName = '{1}'
-                                              ,ContactTitle = '{2}'
-                                              ,Address = '{3}'
-                                              ,City = '{4}'
-                                              ,Region = '{5}'
-                                              ,PostalCode = '{6}'
-                                              ,Country = '{7}'
-                                              ,Phone = '{8}'
-                                              ,Fax = '{9}'
-                                              ,HomePage = '{10}'
-                                         WHERE CompanyName = '{0}';";
-
-                    cmd.CommandText = string.Format(cmd.CommandText, 
-                        companyName.ToString(), 
-                        updatedSupplier.ContactName,
-                        updatedSupplier.ContactTitle,
-                        updatedSupplier.Address,
-                        updatedSupplier.City,
-                        updatedSupplier.Region,
-                        updatedSupplier.PostalCode,
-                        updatedSupplier.Country,
-                        updatedSupplier.Phone,
-                        updatedSupplier.Fax,
-                        updatedSupplier.HomePage);
-
-                    res = cmd.ExecuteNonQuery();
-                }
-
-                return res;
-            }
         }
     }
 
@@ -118,26 +51,6 @@ namespace PABPProjekat1.src.DB
 
         // Aleksa: not a table column
         public string Password { get; set; }
-
-        // Aleksa TODO: delete old method
-        /*public void Load(SqlDataReader reader)
-        {
-            SupplierID = Int32.Parse(reader["SupplierID"].ToString());
-            CompanyName = reader["CompanyName"].ToString();
-            ContactName = reader["ContactName"].ToString();
-            ContactTitle = reader["ContactTitle"].ToString();
-            Address = reader["Address"].ToString();
-            City = reader["City"].ToString();
-            Region = reader["Region"].ToString();
-            PostalCode = reader["PostalCode"].ToString();
-            Country = reader["Country"].ToString();
-            Phone = reader["Phone"].ToString();
-            Fax = reader["Fax"].ToString();
-            HomePage = reader["HomePage"].ToString();
-
-            // Aleksa: escaping the special characters from number and postal code
-            Password = ParsePassword(Phone, PostalCode);
-        }*/
 
         public void Load(DataRow row)
         {

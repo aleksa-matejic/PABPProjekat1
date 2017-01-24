@@ -10,7 +10,6 @@ namespace PABPProjekat1.src.Session
     {
         public string Username { get; set; }
 
-        // Aleksa TODO: check if this is needed
         public int SupplierID { get; set; }
 
         public bool IsActive { get; set; }
