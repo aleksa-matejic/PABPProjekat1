@@ -1,6 +1,7 @@
 ﻿using PABPProjekat1.src.UpdateSupplier;
 using PABPProjekat1.src.Categories;
 using PABPProjekat1.src.Login;
+using PABPProjekat1.src.Product;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -86,5 +87,34 @@ namespace PABPProjekat1.src.FormProvider
         private static UpdateSupplierForm updateSupplierForm;
 
         #endregion
+
+        #region ProductForm
+
+        public static ProductForm ProductForm
+        {
+            get
+            {
+                if (productForm == null)
+                {
+                    productForm = new ProductForm();
+                }
+                return productForm;
+            }
+
+            set
+            {
+                productForm = value;
+            }
+        }
+
+        public static ProductForm GetProductForm()
+        {
+            return productForm;
+        }
+
+        private static ProductForm productForm;
+
+        #endregion
+
     }
 }

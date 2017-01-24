@@ -33,18 +33,19 @@
             this.gbCategories = new System.Windows.Forms.GroupBox();
             this.dgvCategories = new System.Windows.Forms.DataGridView();
             this.gbProducts = new System.Windows.Forms.GroupBox();
-            this.dgvProducts = new System.Windows.Forms.DataGridView();
-            this.lblAutomaticOrder = new System.Windows.Forms.Label();
-            this.nudMin = new System.Windows.Forms.NumericUpDown();
-            this.nudMax = new System.Windows.Forms.NumericUpDown();
-            this.lblMin = new System.Windows.Forms.Label();
             this.lblMax = new System.Windows.Forms.Label();
+            this.lblMin = new System.Windows.Forms.Label();
+            this.nudMax = new System.Windows.Forms.NumericUpDown();
+            this.nudMin = new System.Windows.Forms.NumericUpDown();
+            this.lblAutomaticOrder = new System.Windows.Forms.Label();
+            this.dgvProducts = new System.Windows.Forms.DataGridView();
+            this.btnShowProductDetails = new System.Windows.Forms.Button();
             this.gbCategories.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCategories)).BeginInit();
             this.gbProducts.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvProducts)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudMin)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudMax)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudMin)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvProducts)).BeginInit();
             this.SuspendLayout();
             // 
             // lblUsername
@@ -91,6 +92,7 @@
             // 
             // gbProducts
             // 
+            this.gbProducts.Controls.Add(this.btnShowProductDetails);
             this.gbProducts.Controls.Add(this.lblMax);
             this.gbProducts.Controls.Add(this.lblMin);
             this.gbProducts.Controls.Add(this.nudMax);
@@ -104,15 +106,37 @@
             this.gbProducts.TabStop = false;
             this.gbProducts.Text = "Products";
             // 
-            // dgvProducts
+            // lblMax
             // 
-            this.dgvProducts.AllowUserToDeleteRows = false;
-            this.dgvProducts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvProducts.Location = new System.Drawing.Point(6, 19);
-            this.dgvProducts.Name = "dgvProducts";
-            this.dgvProducts.Size = new System.Drawing.Size(623, 179);
-            this.dgvProducts.TabIndex = 0;
-            this.dgvProducts.SelectionChanged += new System.EventHandler(this.dgvProducts_SelectionChanged);
+            this.lblMax.AutoSize = true;
+            this.lblMax.Location = new System.Drawing.Point(658, 79);
+            this.lblMax.Name = "lblMax";
+            this.lblMax.Size = new System.Drawing.Size(55, 13);
+            this.lblMax.TabIndex = 5;
+            this.lblMax.Text = "Max units:";
+            // 
+            // lblMin
+            // 
+            this.lblMin.AutoSize = true;
+            this.lblMin.Location = new System.Drawing.Point(658, 37);
+            this.lblMin.Name = "lblMin";
+            this.lblMin.Size = new System.Drawing.Size(52, 13);
+            this.lblMin.TabIndex = 4;
+            this.lblMin.Text = "Min units:";
+            // 
+            // nudMax
+            // 
+            this.nudMax.Location = new System.Drawing.Point(716, 77);
+            this.nudMax.Name = "nudMax";
+            this.nudMax.Size = new System.Drawing.Size(120, 20);
+            this.nudMax.TabIndex = 3;
+            // 
+            // nudMin
+            // 
+            this.nudMin.Location = new System.Drawing.Point(716, 35);
+            this.nudMin.Name = "nudMin";
+            this.nudMin.Size = new System.Drawing.Size(120, 20);
+            this.nudMin.TabIndex = 2;
             // 
             // lblAutomaticOrder
             // 
@@ -123,37 +147,25 @@
             this.lblAutomaticOrder.TabIndex = 1;
             this.lblAutomaticOrder.Text = "Automatic Order";
             // 
-            // nudMin
+            // dgvProducts
             // 
-            this.nudMin.Location = new System.Drawing.Point(716, 84);
-            this.nudMin.Name = "nudMin";
-            this.nudMin.Size = new System.Drawing.Size(120, 20);
-            this.nudMin.TabIndex = 2;
+            this.dgvProducts.AllowUserToDeleteRows = false;
+            this.dgvProducts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvProducts.Location = new System.Drawing.Point(6, 19);
+            this.dgvProducts.Name = "dgvProducts";
+            this.dgvProducts.Size = new System.Drawing.Size(623, 179);
+            this.dgvProducts.TabIndex = 0;
+            this.dgvProducts.SelectionChanged += new System.EventHandler(this.dgvProducts_SelectionChanged);
             // 
-            // nudMax
+            // btnShowProductDetails
             // 
-            this.nudMax.Location = new System.Drawing.Point(716, 126);
-            this.nudMax.Name = "nudMax";
-            this.nudMax.Size = new System.Drawing.Size(120, 20);
-            this.nudMax.TabIndex = 3;
-            // 
-            // lblMin
-            // 
-            this.lblMin.AutoSize = true;
-            this.lblMin.Location = new System.Drawing.Point(658, 86);
-            this.lblMin.Name = "lblMin";
-            this.lblMin.Size = new System.Drawing.Size(52, 13);
-            this.lblMin.TabIndex = 4;
-            this.lblMin.Text = "Min units:";
-            // 
-            // lblMax
-            // 
-            this.lblMax.AutoSize = true;
-            this.lblMax.Location = new System.Drawing.Point(658, 128);
-            this.lblMax.Name = "lblMax";
-            this.lblMax.Size = new System.Drawing.Size(55, 13);
-            this.lblMax.TabIndex = 5;
-            this.lblMax.Text = "Max units:";
+            this.btnShowProductDetails.Location = new System.Drawing.Point(661, 116);
+            this.btnShowProductDetails.Name = "btnShowProductDetails";
+            this.btnShowProductDetails.Size = new System.Drawing.Size(175, 23);
+            this.btnShowProductDetails.TabIndex = 6;
+            this.btnShowProductDetails.Text = "Show Product Details";
+            this.btnShowProductDetails.UseVisualStyleBackColor = true;
+            this.btnShowProductDetails.Click += new System.EventHandler(this.btnShowProductDetails_Click);
             // 
             // CategoriesForm
             // 
@@ -172,9 +184,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvCategories)).EndInit();
             this.gbProducts.ResumeLayout(false);
             this.gbProducts.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvProducts)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudMin)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudMax)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudMin)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvProducts)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -193,5 +205,6 @@
         private System.Windows.Forms.NumericUpDown nudMax;
         private System.Windows.Forms.NumericUpDown nudMin;
         private System.Windows.Forms.Label lblAutomaticOrder;
+        private System.Windows.Forms.Button btnShowProductDetails;
     }
 }

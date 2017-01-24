@@ -83,7 +83,7 @@ namespace PABPProjekat1.src.UpdateSupplier
             }
             catch (Exception exc)
             {
-                MessageBox.Show("Update unsuccessful! " + exc.Message);
+                MessageBox.Show(exc.Message);
                 return;
             }
 
