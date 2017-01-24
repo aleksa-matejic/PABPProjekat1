@@ -34,10 +34,17 @@
             this.dgvCategories = new System.Windows.Forms.DataGridView();
             this.gbProducts = new System.Windows.Forms.GroupBox();
             this.dgvProducts = new System.Windows.Forms.DataGridView();
+            this.lblAutomaticOrder = new System.Windows.Forms.Label();
+            this.nudMin = new System.Windows.Forms.NumericUpDown();
+            this.nudMax = new System.Windows.Forms.NumericUpDown();
+            this.lblMin = new System.Windows.Forms.Label();
+            this.lblMax = new System.Windows.Forms.Label();
             this.gbCategories.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCategories)).BeginInit();
             this.gbProducts.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProducts)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudMin)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudMax)).BeginInit();
             this.SuspendLayout();
             // 
             // lblUsername
@@ -67,7 +74,7 @@
             this.gbCategories.Controls.Add(this.dgvCategories);
             this.gbCategories.Location = new System.Drawing.Point(12, 99);
             this.gbCategories.Name = "gbCategories";
-            this.gbCategories.Size = new System.Drawing.Size(888, 204);
+            this.gbCategories.Size = new System.Drawing.Size(635, 204);
             this.gbCategories.TabIndex = 2;
             this.gbCategories.TabStop = false;
             this.gbCategories.Text = "Categories";
@@ -78,12 +85,17 @@
             this.dgvCategories.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvCategories.Location = new System.Drawing.Point(6, 19);
             this.dgvCategories.Name = "dgvCategories";
-            this.dgvCategories.Size = new System.Drawing.Size(876, 179);
+            this.dgvCategories.Size = new System.Drawing.Size(623, 179);
             this.dgvCategories.TabIndex = 0;
             this.dgvCategories.SelectionChanged += new System.EventHandler(this.dgvCategories_SelectionChanged);
             // 
             // gbProducts
             // 
+            this.gbProducts.Controls.Add(this.lblMax);
+            this.gbProducts.Controls.Add(this.lblMin);
+            this.gbProducts.Controls.Add(this.nudMax);
+            this.gbProducts.Controls.Add(this.nudMin);
+            this.gbProducts.Controls.Add(this.lblAutomaticOrder);
             this.gbProducts.Controls.Add(this.dgvProducts);
             this.gbProducts.Location = new System.Drawing.Point(12, 309);
             this.gbProducts.Name = "gbProducts";
@@ -98,8 +110,50 @@
             this.dgvProducts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvProducts.Location = new System.Drawing.Point(6, 19);
             this.dgvProducts.Name = "dgvProducts";
-            this.dgvProducts.Size = new System.Drawing.Size(876, 179);
+            this.dgvProducts.Size = new System.Drawing.Size(623, 179);
             this.dgvProducts.TabIndex = 0;
+            this.dgvProducts.SelectionChanged += new System.EventHandler(this.dgvProducts_SelectionChanged);
+            // 
+            // lblAutomaticOrder
+            // 
+            this.lblAutomaticOrder.AutoSize = true;
+            this.lblAutomaticOrder.Location = new System.Drawing.Point(713, 19);
+            this.lblAutomaticOrder.Name = "lblAutomaticOrder";
+            this.lblAutomaticOrder.Size = new System.Drawing.Size(83, 13);
+            this.lblAutomaticOrder.TabIndex = 1;
+            this.lblAutomaticOrder.Text = "Automatic Order";
+            // 
+            // nudMin
+            // 
+            this.nudMin.Location = new System.Drawing.Point(716, 84);
+            this.nudMin.Name = "nudMin";
+            this.nudMin.Size = new System.Drawing.Size(120, 20);
+            this.nudMin.TabIndex = 2;
+            // 
+            // nudMax
+            // 
+            this.nudMax.Location = new System.Drawing.Point(716, 126);
+            this.nudMax.Name = "nudMax";
+            this.nudMax.Size = new System.Drawing.Size(120, 20);
+            this.nudMax.TabIndex = 3;
+            // 
+            // lblMin
+            // 
+            this.lblMin.AutoSize = true;
+            this.lblMin.Location = new System.Drawing.Point(658, 86);
+            this.lblMin.Name = "lblMin";
+            this.lblMin.Size = new System.Drawing.Size(52, 13);
+            this.lblMin.TabIndex = 4;
+            this.lblMin.Text = "Min units:";
+            // 
+            // lblMax
+            // 
+            this.lblMax.AutoSize = true;
+            this.lblMax.Location = new System.Drawing.Point(658, 128);
+            this.lblMax.Name = "lblMax";
+            this.lblMax.Size = new System.Drawing.Size(55, 13);
+            this.lblMax.TabIndex = 5;
+            this.lblMax.Text = "Max units:";
             // 
             // CategoriesForm
             // 
@@ -117,7 +171,10 @@
             this.gbCategories.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvCategories)).EndInit();
             this.gbProducts.ResumeLayout(false);
+            this.gbProducts.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProducts)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudMin)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudMax)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -131,5 +188,10 @@
         private System.Windows.Forms.DataGridView dgvCategories;
         private System.Windows.Forms.GroupBox gbProducts;
         private System.Windows.Forms.DataGridView dgvProducts;
+        private System.Windows.Forms.Label lblMax;
+        private System.Windows.Forms.Label lblMin;
+        private System.Windows.Forms.NumericUpDown nudMax;
+        private System.Windows.Forms.NumericUpDown nudMin;
+        private System.Windows.Forms.Label lblAutomaticOrder;
     }
 }

@@ -36,6 +36,9 @@ namespace PABPProjekat1.src.Categories
             productsTableAdapter = new DB.NorthwindDataSetTableAdapters.ProductsTableAdapter();
             categoriesBindingSource = new BindingSource();
             productsBindingSource = new BindingSource();
+
+            this.nudMin.Value = 10;
+            this.nudMax.Value = 100;
         }
 
         private void CategoriesForm_Load(object sender, EventArgs e)
@@ -81,6 +84,7 @@ namespace PABPProjekat1.src.Categories
         private void dgvCategories_SelectionChanged(object sender, EventArgs e)
         {
             DataGridViewRow row = dgvCategories.CurrentRow;
+            Int32 tmp = (Int32)((DataRowView)categoriesBindingSource.Current).Row["CategoryID"];
             try
             {
                 LoadChildData(row);
@@ -155,7 +159,62 @@ namespace PABPProjekat1.src.Categories
 
         private void Cleaning()
         {
-           
+            // Aleksa TODO: implementation
+        }
+
+        private void dgvProducts_SelectionChanged(object sender, EventArgs e)
+        {
+            short selectedUnitsInStock = (short)((DataRowView)productsBindingSource.Current).Row["UnitsInStock"];
+            string selectedProductName = (string)((DataRowView)productsBindingSource.Current).Row["ProductName"];
+            // Aleksa TODO: use this in upper method
+            // Int32 tmp = (Int32)((DataRowView)categoriesBindingSource.Current).Row["CategoryID"];
+
+            // Aleksa: check if units in stock for selected product is lower that minimum and ask user if wanna order to max
+            if (AutomaticOrderRequired())
+            {
+                DialogResult dialogResult = MessageBox.Show("Units in stock for '" + selectedProductName + "' are less then min! \nOrder units to max?", "Automatic order", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+
+                if (dialogResult == DialogResult.Yes)
+                {
+                    try
+                    {
+                        // Aleksa: save updates to database
+                        int res = -1;
+                        ((DataRowView)productsBindingSource.Current).Row["UnitsInStock"] = nudMax.Value;
+                        productsBindingSource.EndEdit();
+                        nwds.GetChanges();
+                        res = productsTableAdapter.Update(nwds.Products);
+                        if (res != 1)
+                        {
+                            MessageBox.Show("Order error!");
+                        }
+                    }
+                    catch (Exception exc)
+                    {
+                        MessageBox.Show("Order error! " + exc.Message);
+                    }
+                }
+            }
+        }
+
+        public bool AutomaticOrderRequired()
+        {
+            bool value = false;
+            if(nudMin.Value < nudMax.Value)
+            {
+                short unitsInStock = (short)((DataRowView)productsBindingSource.Current).Row["UnitsInStock"];
+                if (unitsInStock < nudMin.Value)
+                {
+                    value = true;
+                }
+            }
+            else
+            {
+                // Aleksa TODO: implement automatic check
+                MessageBox.Show("Min is grater than max. Please review your input!");
+                value = false;
+            }
+            return value;
         }
     }
 }

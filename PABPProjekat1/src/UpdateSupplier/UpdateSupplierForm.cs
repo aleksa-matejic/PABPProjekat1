@@ -78,12 +78,12 @@ namespace PABPProjekat1.src.UpdateSupplier
                 res = suppliersTableAdapter.Update(nwds.Suppliers);
                 if(res != 1)
                 {
-                    throw new Exception("Update have some errors!");
+                    throw new Exception("Update unsuccessful!");
                 }
             }
             catch (Exception exc)
             {
-                MessageBox.Show(exc.Message);
+                MessageBox.Show("Update unsuccessful! " + exc.Message);
                 return;
             }
 
