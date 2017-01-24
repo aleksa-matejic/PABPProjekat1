@@ -14,6 +14,10 @@ namespace PABPProjekat1.src.UpdateSupplier
 {
     public partial class UpdateSupplierForm : Form
     {
+        DB.NorthwindDataSet nwds;
+        DB.NorthwindDataSetTableAdapters.SuppliersTableAdapter suppliersTableAdapter;
+        BindingSource suppliersBindingSource;
+
         public UpdateSupplierForm()
         {
             InitializeComponent();
@@ -21,6 +25,9 @@ namespace PABPProjekat1.src.UpdateSupplier
             // Aleksa: positioning form to the center of the display
             this.StartPosition = FormStartPosition.CenterScreen;
 
+            nwds = new NorthwindDataSet();
+            suppliersTableAdapter = new DB.NorthwindDataSetTableAdapters.SuppliersTableAdapter();
+            suppliersBindingSource = new BindingSource();
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -65,36 +72,24 @@ namespace PABPProjekat1.src.UpdateSupplier
         private void btnSave_Click(object sender, EventArgs e)
         {
             // Aleksa TODO: implement save
-            Supplier updatedSupplier = new Supplier();
-
-            updatedSupplier.CompanyName = tbCompanyName.Text;
-            updatedSupplier.ContactName = tbContactName.Text;
-            updatedSupplier.ContactTitle = tbContactTitle.Text;
-            updatedSupplier.Address = tbAddress.Text;
-            updatedSupplier.City = tbCity.Text;
-            updatedSupplier.Region = tbRegion.Text;
-            updatedSupplier.PostalCode = tbPostalCode.Text;
-            updatedSupplier.Country = tbCountry.Text;
-            updatedSupplier.Phone = tbPhone.Text;
-            updatedSupplier.Fax = tbFax.Text;
-            updatedSupplier.HomePage = tbHomePage.Text;
-
+            int res = -1;
             try
             {
-                int res = Suppliers.UpdateSupplier(UserSession.Instance.Username, updatedSupplier);
-                if (res == 1)
+                suppliersBindingSource.EndEdit();
+                nwds.GetChanges();
+                res = suppliersTableAdapter.Update(nwds.Suppliers);
+                if(res != 1)
                 {
-                    MessageBox.Show("Profile updated successfully!");
-                }
-                else
-                {
-                    MessageBox.Show("Profile update failed! Error code: " + res);
+                    throw new Exception("Update have some errors!");
                 }
             }
             catch (Exception exc)
             {
-                MessageBox.Show("Exception: " + exc.Message);
+                MessageBox.Show(exc.Message);
+                return;
             }
+
+            MessageBox.Show("Profile updated successfully!");
 
             // Aleksa: disable all textboxes and save button until user wanna update his information
             foreach (Control x in this.Controls)
@@ -111,7 +106,9 @@ namespace PABPProjekat1.src.UpdateSupplier
 
         private void UpdateSupplierForm_Load(object sender, EventArgs e)
         {
+            // Aleksa: set windows title
             this.Text = UserSession.Instance.Username + " Profile";
+            
             // Aleksa: disable all textboxes and save button until user wanna update his information
             foreach (Control x in this.Controls)
             {
@@ -124,24 +121,22 @@ namespace PABPProjekat1.src.UpdateSupplier
             btnUpdate.Enabled = true;
             btnSave.Enabled = false;
 
-            Suppliers suppliers = new Suppliers();
-            Supplier supplier = suppliers.GetSupplier(UserSession.Instance.Username);
+            suppliersTableAdapter.Fill(nwds.Suppliers);
+            suppliersBindingSource.DataSource = nwds.Suppliers;
+            suppliersBindingSource.Filter = "SupplierID = '" + UserSession.Instance.SupplierID + "'";
 
-            if (supplier != null)
-            {
-                tbSupplierId.Text = supplier.SupplierID.ToString();
-                tbCompanyName.Text = supplier.CompanyName;
-                tbContactName.Text = supplier.ContactName;
-                tbContactTitle.Text = supplier.ContactTitle;
-                tbAddress.Text = supplier.Address;
-                tbCity.Text = supplier.City;
-                tbRegion.Text = supplier.Region;
-                tbPostalCode.Text = supplier.PostalCode;
-                tbCountry.Text = supplier.Country;
-                tbPhone.Text = supplier.Phone;
-                tbFax.Text = supplier.Fax;
-                tbHomePage.Text = supplier.HomePage;
-            }
+            tbSupplierId.DataBindings.Add("Text", suppliersBindingSource, "SupplierID");
+            tbCompanyName.DataBindings.Add("Text", suppliersBindingSource, "ContactName");
+            tbContactName.DataBindings.Add("Text", suppliersBindingSource, "CompanyName");
+            tbContactTitle.DataBindings.Add("Text", suppliersBindingSource, "ContactTitle");
+            tbAddress.DataBindings.Add("Text", suppliersBindingSource, "Address");
+            tbCity.DataBindings.Add("Text", suppliersBindingSource, "City");
+            tbRegion.DataBindings.Add("Text", suppliersBindingSource, "Region");
+            tbPostalCode.DataBindings.Add("Text", suppliersBindingSource, "PostalCode");
+            tbCountry.DataBindings.Add("Text", suppliersBindingSource, "Country");
+            tbPhone.DataBindings.Add("Text", suppliersBindingSource, "Phone");
+            tbFax.DataBindings.Add("Text", suppliersBindingSource, "Fax");
+            tbHomePage.DataBindings.Add("Text", suppliersBindingSource, "HomePage");
         }
 
         private void UpdateSupplierForm_FormClosing(object sender, FormClosingEventArgs e)

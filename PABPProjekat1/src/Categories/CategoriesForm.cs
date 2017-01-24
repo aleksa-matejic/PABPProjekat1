@@ -14,10 +14,11 @@ namespace PABPProjekat1.src.Categories
 {
     public partial class CategoriesForm : Form
     {
-        SqlConnection conn;
-        SqlDataAdapter daCategories;
-        SqlDataAdapter daProducts;
-        DataSet ds;
+        DB.NorthwindDataSet nwds;
+        DB.NorthwindDataSetTableAdapters.CategoriesTableAdapter categoriesTableAdapter;
+        DB.NorthwindDataSetTableAdapters.ProductsTableAdapter productsTableAdapter;
+        BindingSource categoriesBindingSource;
+        BindingSource productsBindingSource;
 
         public CategoriesForm()
         {
@@ -30,54 +31,63 @@ namespace PABPProjekat1.src.Categories
 
             this.lblUsername.Font = new Font(lblUsername.Font, FontStyle.Bold | FontStyle.Underline | FontStyle.Italic);
 
+            nwds = new DB.NorthwindDataSet();
+            categoriesTableAdapter = new DB.NorthwindDataSetTableAdapters.CategoriesTableAdapter();
+            productsTableAdapter = new DB.NorthwindDataSetTableAdapters.ProductsTableAdapter();
+            categoriesBindingSource = new BindingSource();
+            productsBindingSource = new BindingSource();
         }
 
         private void CategoriesForm_Load(object sender, EventArgs e)
         {
-            // Aleksa TODO: load categories and products
-            using (conn = DB.DB.GetConnection())
-            {
-                daCategories = new SqlDataAdapter("SELECT * FROM Categories", conn);
-                daProducts = new SqlDataAdapter("SELECT * FROM Products", conn);
-
-                ds = new DataSet();
-
-                daCategories.Fill(ds, "Categories");
-                daProducts.Fill(ds, "Products");
-
-                ds.Tables["Categories"].Constraints.Add("CategoryID_PK", ds.Tables["Categories"].Columns["CategoryID"], true);
-                ds.Relations.Add("Categories_Products", ds.Tables["Categories"].Columns["CategoryID"], ds.Tables["Products"].Columns["CategoryID"]);
-
-                dgvCategories.DataSource = ds.Tables["Categories"];
-            }
-
-            //LoadChildData(0);
-        }
-
-        private void LoadChildData(int rowIndex)
-        {
             lblUsername.Text = UserSession.Instance.Username;
 
-            var parentRow = ds.Tables["Categories"].Rows[rowIndex];
-            var childRows = parentRow.GetChildRows("Categories_Products");
-            DataTable childTable = ds.Tables["Products"].Clone();
+            productsTableAdapter.Fill(nwds.Products);
+            categoriesTableAdapter.Fill(nwds.Categories);
 
-            foreach(var row in childRows)
+            productsBindingSource.DataSource = nwds.Products;
+            categoriesBindingSource.DataSource = nwds.Categories;
+
+            // Aleksa: creating filter for selecting proper categories
+            DataRow[] products = nwds.Products.Select("SupplierID = " + UserSession.Instance.SupplierID);
+            string filter = "CategoryID IN (";
+            int index = 0;
+            foreach(DataRow product in products)
             {
-                childTable.ImportRow(row);
+                if (index == 0)
+                {
+                    filter += "'" + product["CategoryID"] + "'";
+                }
+                else
+                {
+                    filter += ", '" + product["CategoryID"] + "'";
+                }
+                index++;
             }
-            dgvProducts.DataSource = childTable;
+            filter += ")";
+
+            categoriesBindingSource.Filter = filter;
+
+            dgvProducts.DataSource = productsBindingSource;
+            dgvCategories.DataSource = categoriesBindingSource;
+        }
+
+        private void LoadChildData(DataGridViewRow row)
+        {
+            string categoryId = row.Cells["CategoryID"].Value.ToString();
+            productsBindingSource.Filter = "SupplierID = " + UserSession.Instance.SupplierID + " AND CategoryID = " + categoryId;
         }
 
         private void dgvCategories_SelectionChanged(object sender, EventArgs e)
         {
+            DataGridViewRow row = dgvCategories.CurrentRow;
             try
             {
-                LoadChildData(dgvCategories.CurrentRow.Index);
+                LoadChildData(row);
             }
             catch (NullReferenceException exc)
             {
-                MessageBox.Show(exc.Message);
+                Console.Out.Write(exc.Message);
             }
         }
 

@@ -34,6 +34,9 @@
             this.btnClose = new System.Windows.Forms.Button();
             this.tbUsername = new System.Windows.Forms.TextBox();
             this.tbPassword = new System.Windows.Forms.TextBox();
+            this.northwindDataSet = new PABPProjekat1.src.DB.NorthwindDataSet();
+            this.suppliersTableAdapter = new PABPProjekat1.src.DB.NorthwindDataSetTableAdapters.SuppliersTableAdapter();
+            ((System.ComponentModel.ISupportInitialize)(this.northwindDataSet)).BeginInit();
             this.SuspendLayout();
             // 
             // lblUsername
@@ -88,6 +91,15 @@
             this.tbPassword.Size = new System.Drawing.Size(137, 20);
             this.tbPassword.TabIndex = 5;
             // 
+            // northwindDataSet
+            // 
+            this.northwindDataSet.DataSetName = "NorthwindDataSet";
+            this.northwindDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // suppliersTableAdapter
+            // 
+            this.suppliersTableAdapter.ClearBeforeFill = true;
+            // 
             // LoginForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -101,6 +113,7 @@
             this.Controls.Add(this.lblUsername);
             this.Name = "LoginForm";
             this.Text = "Login";
+            ((System.ComponentModel.ISupportInitialize)(this.northwindDataSet)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -114,5 +127,7 @@
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.TextBox tbUsername;
         private System.Windows.Forms.TextBox tbPassword;
+        private DB.NorthwindDataSet northwindDataSet;
+        private DB.NorthwindDataSetTableAdapters.SuppliersTableAdapter suppliersTableAdapter;
     }
 }

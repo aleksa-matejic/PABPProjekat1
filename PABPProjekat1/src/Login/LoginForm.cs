@@ -43,13 +43,14 @@ namespace PABPProjekat1.src.Login
             // Aleksa TODO: ask if session is active and go to categories automatically
 
             // Aleksa TODO: for testing purposes only, comment this for production
-            // tbUsername.Text = "Exotic Liquids";
-            // tbPassword.Text = "1715552222EC14SD";
-
-            tbUsername.Text = "Cisco";
-            tbPassword.Text = "064249189811130";
+            tbUsername.Text = "Exotic Liquids";
+            tbPassword.Text = "1715552222EC14SD";
+            // tbUsername.Text = "Cisco";
+            // tbPassword.Text = "064249189811130";
 
             // Aleksa TODO: use session for populating username field
+
+            suppliersTableAdapter.Fill(northwindDataSet.Suppliers);
         }
 
         private void btnClose_Click(object sender, EventArgs e)

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -14,6 +15,25 @@ namespace PABPProjekat1.src.DB
         public Supplier GetSupplier(string companyName)
         {
             Supplier s = null;
+
+            NorthwindDataSet nwds = new NorthwindDataSet();
+            NorthwindDataSetTableAdapters.SuppliersTableAdapter suppliersTableAdapter = new NorthwindDataSetTableAdapters.SuppliersTableAdapter();
+
+            suppliersTableAdapter.Fill(nwds.Suppliers);
+
+            DataRow[] dataRows = nwds.Suppliers.Select("CompanyName = '" + companyName + "'");
+
+            // Aleksa TODO: datarow more than one result
+            if(dataRows.Length == 1)
+            {
+                s = new Supplier();
+                s.Load(dataRows[0]);
+            }
+
+            return s;
+
+            // Aleksa TODO: delete old code
+            /*Supplier s = null;
 
             using (SqlConnection conn = DB.GetConnection())
             {
@@ -33,9 +53,10 @@ namespace PABPProjekat1.src.DB
                 }
             }
 
-            return s;
+            return s;*/
         }
 
+        // Aleksa TODO: delete this method
         public static int UpdateSupplier(string companyName, Supplier updatedSupplier)
         {
             // Aleksa TODO: update supplier by standards of ADO.NET
@@ -98,7 +119,8 @@ namespace PABPProjekat1.src.DB
         // Aleksa: not a table column
         public string Password { get; set; }
 
-        public void Load(SqlDataReader reader)
+        // Aleksa TODO: delete old method
+        /*public void Load(SqlDataReader reader)
         {
             SupplierID = Int32.Parse(reader["SupplierID"].ToString());
             CompanyName = reader["CompanyName"].ToString();
@@ -112,6 +134,25 @@ namespace PABPProjekat1.src.DB
             Phone = reader["Phone"].ToString();
             Fax = reader["Fax"].ToString();
             HomePage = reader["HomePage"].ToString();
+
+            // Aleksa: escaping the special characters from number and postal code
+            Password = ParsePassword(Phone, PostalCode);
+        }*/
+
+        public void Load(DataRow row)
+        {
+            SupplierID = row.Field<int>("SupplierID");
+            CompanyName = row.Field<string>("CompanyName");
+            ContactName = row.Field<string>("ContactName");
+            ContactTitle = row.Field<string>("ContactTitle");
+            Address = row.Field<string>("Address");
+            City = row.Field<string>("City");
+            Region = row.Field<string>("Region");
+            PostalCode = row.Field<string>("PostalCode");
+            Country = row.Field<string>("Country");
+            Phone = row.Field<string>("Phone");
+            Fax = row.Field<string>("Fax");
+            HomePage = row.Field<string>("HomePage");
 
             // Aleksa: escaping the special characters from number and postal code
             Password = ParsePassword(Phone, PostalCode);
