@@ -1,4 +1,5 @@
-﻿using PABPProjekat1.src.Product;
+﻿using PABPProjekat1.src.Orders;
+using PABPProjekat1.src.Product;
 using PABPProjekat1.src.Session;
 using System;
 using System.Collections.Generic;
@@ -232,6 +233,16 @@ namespace PABPProjekat1.src.Categories
             FormProvider.FormProvider.CategoriesForm.Hide();
             FormProvider.FormProvider.ProductForm = new ProductForm();
             FormProvider.FormProvider.ProductForm.Show();
+        }
+
+        private void btnShowProductOrders_Click(object sender, EventArgs e)
+        {
+            Int32 productId = (Int32)((DataRowView)productsBindingSource.Current).Row["ProductID"];
+
+            // FormProvider.FormProvider.OrdersForm = new OrdersForm(productId, dateFrom, dateTo);
+            FormProvider.FormProvider.CategoriesForm.Hide();
+            FormProvider.FormProvider.OrdersForm = new OrdersForm(productId, dtpDateFrom, dtpDateTo);
+            FormProvider.FormProvider.OrdersForm.Show();
         }
     }
 }

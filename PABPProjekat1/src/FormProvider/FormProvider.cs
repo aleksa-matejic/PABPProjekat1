@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using PABPProjekat1.src.Orders;
 
 namespace PABPProjekat1.src.FormProvider
 {
@@ -113,6 +114,34 @@ namespace PABPProjekat1.src.FormProvider
         }
 
         private static ProductForm productForm;
+
+        #endregion
+
+        #region OrdersForm
+
+        public static OrdersForm OrdersForm
+        {
+            get
+            {
+                if (ordersForm == null)
+                {
+                    ordersForm = new OrdersForm();
+                }
+                return ordersForm;
+            }
+
+            set
+            {
+                ordersForm = value;
+            }
+        }
+
+        public static OrdersForm GetOrdersForm()
+        {
+            return ordersForm;
+        }
+
+        private static OrdersForm ordersForm;
 
         #endregion
 

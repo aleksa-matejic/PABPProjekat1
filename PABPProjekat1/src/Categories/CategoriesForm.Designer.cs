@@ -33,6 +33,10 @@
             this.gbCategories = new System.Windows.Forms.GroupBox();
             this.dgvCategories = new System.Windows.Forms.DataGridView();
             this.gbProducts = new System.Windows.Forms.GroupBox();
+            this.dtpDateTo = new System.Windows.Forms.DateTimePicker();
+            this.dtpDateFrom = new System.Windows.Forms.DateTimePicker();
+            this.btnShowProductOrders = new System.Windows.Forms.Button();
+            this.btnAddNewProduct = new System.Windows.Forms.Button();
             this.btnShowProductDetails = new System.Windows.Forms.Button();
             this.lblMax = new System.Windows.Forms.Label();
             this.lblMin = new System.Windows.Forms.Label();
@@ -40,7 +44,8 @@
             this.nudMin = new System.Windows.Forms.NumericUpDown();
             this.lblAutomaticOrder = new System.Windows.Forms.Label();
             this.dgvProducts = new System.Windows.Forms.DataGridView();
-            this.btnAddNewProduct = new System.Windows.Forms.Button();
+            this.lblFromDate = new System.Windows.Forms.Label();
+            this.lblToDate = new System.Windows.Forms.Label();
             this.gbCategories.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCategories)).BeginInit();
             this.gbProducts.SuspendLayout();
@@ -74,7 +79,7 @@
             // gbCategories
             // 
             this.gbCategories.Controls.Add(this.dgvCategories);
-            this.gbCategories.Location = new System.Drawing.Point(12, 99);
+            this.gbCategories.Location = new System.Drawing.Point(12, 47);
             this.gbCategories.Name = "gbCategories";
             this.gbCategories.Size = new System.Drawing.Size(635, 204);
             this.gbCategories.TabIndex = 2;
@@ -93,6 +98,11 @@
             // 
             // gbProducts
             // 
+            this.gbProducts.Controls.Add(this.lblToDate);
+            this.gbProducts.Controls.Add(this.lblFromDate);
+            this.gbProducts.Controls.Add(this.dtpDateTo);
+            this.gbProducts.Controls.Add(this.dtpDateFrom);
+            this.gbProducts.Controls.Add(this.btnShowProductOrders);
             this.gbProducts.Controls.Add(this.btnAddNewProduct);
             this.gbProducts.Controls.Add(this.btnShowProductDetails);
             this.gbProducts.Controls.Add(this.lblMax);
@@ -101,16 +111,50 @@
             this.gbProducts.Controls.Add(this.nudMin);
             this.gbProducts.Controls.Add(this.lblAutomaticOrder);
             this.gbProducts.Controls.Add(this.dgvProducts);
-            this.gbProducts.Location = new System.Drawing.Point(12, 309);
+            this.gbProducts.Location = new System.Drawing.Point(12, 257);
             this.gbProducts.Name = "gbProducts";
-            this.gbProducts.Size = new System.Drawing.Size(888, 204);
+            this.gbProducts.Size = new System.Drawing.Size(888, 321);
             this.gbProducts.TabIndex = 2;
             this.gbProducts.TabStop = false;
             this.gbProducts.Text = "Products";
             // 
+            // dtpDateTo
+            // 
+            this.dtpDateTo.Location = new System.Drawing.Point(729, 287);
+            this.dtpDateTo.Name = "dtpDateTo";
+            this.dtpDateTo.Size = new System.Drawing.Size(116, 20);
+            this.dtpDateTo.TabIndex = 10;
+            // 
+            // dtpDateFrom
+            // 
+            this.dtpDateFrom.Location = new System.Drawing.Point(729, 260);
+            this.dtpDateFrom.Name = "dtpDateFrom";
+            this.dtpDateFrom.Size = new System.Drawing.Size(116, 20);
+            this.dtpDateFrom.TabIndex = 9;
+            // 
+            // btnShowProductOrders
+            // 
+            this.btnShowProductOrders.Location = new System.Drawing.Point(670, 231);
+            this.btnShowProductOrders.Name = "btnShowProductOrders";
+            this.btnShowProductOrders.Size = new System.Drawing.Size(175, 23);
+            this.btnShowProductOrders.TabIndex = 8;
+            this.btnShowProductOrders.Text = "Show Product Orders";
+            this.btnShowProductOrders.UseVisualStyleBackColor = true;
+            this.btnShowProductOrders.Click += new System.EventHandler(this.btnShowProductOrders_Click);
+            // 
+            // btnAddNewProduct
+            // 
+            this.btnAddNewProduct.Location = new System.Drawing.Point(670, 143);
+            this.btnAddNewProduct.Name = "btnAddNewProduct";
+            this.btnAddNewProduct.Size = new System.Drawing.Size(175, 23);
+            this.btnAddNewProduct.TabIndex = 7;
+            this.btnAddNewProduct.Text = "Add New Product";
+            this.btnAddNewProduct.UseVisualStyleBackColor = true;
+            this.btnAddNewProduct.Click += new System.EventHandler(this.btnAddNewProduct_Click);
+            // 
             // btnShowProductDetails
             // 
-            this.btnShowProductDetails.Location = new System.Drawing.Point(661, 116);
+            this.btnShowProductDetails.Location = new System.Drawing.Point(670, 114);
             this.btnShowProductDetails.Name = "btnShowProductDetails";
             this.btnShowProductDetails.Size = new System.Drawing.Size(175, 23);
             this.btnShowProductDetails.TabIndex = 6;
@@ -121,7 +165,7 @@
             // lblMax
             // 
             this.lblMax.AutoSize = true;
-            this.lblMax.Location = new System.Drawing.Point(658, 79);
+            this.lblMax.Location = new System.Drawing.Point(667, 66);
             this.lblMax.Name = "lblMax";
             this.lblMax.Size = new System.Drawing.Size(55, 13);
             this.lblMax.TabIndex = 5;
@@ -130,7 +174,7 @@
             // lblMin
             // 
             this.lblMin.AutoSize = true;
-            this.lblMin.Location = new System.Drawing.Point(658, 37);
+            this.lblMin.Location = new System.Drawing.Point(667, 40);
             this.lblMin.Name = "lblMin";
             this.lblMin.Size = new System.Drawing.Size(52, 13);
             this.lblMin.TabIndex = 4;
@@ -138,14 +182,14 @@
             // 
             // nudMax
             // 
-            this.nudMax.Location = new System.Drawing.Point(716, 77);
+            this.nudMax.Location = new System.Drawing.Point(725, 64);
             this.nudMax.Name = "nudMax";
             this.nudMax.Size = new System.Drawing.Size(120, 20);
             this.nudMax.TabIndex = 3;
             // 
             // nudMin
             // 
-            this.nudMin.Location = new System.Drawing.Point(716, 35);
+            this.nudMin.Location = new System.Drawing.Point(725, 38);
             this.nudMin.Name = "nudMin";
             this.nudMin.Size = new System.Drawing.Size(120, 20);
             this.nudMin.TabIndex = 2;
@@ -153,7 +197,7 @@
             // lblAutomaticOrder
             // 
             this.lblAutomaticOrder.AutoSize = true;
-            this.lblAutomaticOrder.Location = new System.Drawing.Point(713, 19);
+            this.lblAutomaticOrder.Location = new System.Drawing.Point(722, 22);
             this.lblAutomaticOrder.Name = "lblAutomaticOrder";
             this.lblAutomaticOrder.Size = new System.Drawing.Size(83, 13);
             this.lblAutomaticOrder.TabIndex = 1;
@@ -165,19 +209,27 @@
             this.dgvProducts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvProducts.Location = new System.Drawing.Point(6, 19);
             this.dgvProducts.Name = "dgvProducts";
-            this.dgvProducts.Size = new System.Drawing.Size(623, 179);
+            this.dgvProducts.Size = new System.Drawing.Size(623, 296);
             this.dgvProducts.TabIndex = 0;
             this.dgvProducts.SelectionChanged += new System.EventHandler(this.dgvProducts_SelectionChanged);
             // 
-            // btnAddNewProduct
+            // lblFromDate
             // 
-            this.btnAddNewProduct.Location = new System.Drawing.Point(661, 145);
-            this.btnAddNewProduct.Name = "btnAddNewProduct";
-            this.btnAddNewProduct.Size = new System.Drawing.Size(175, 23);
-            this.btnAddNewProduct.TabIndex = 7;
-            this.btnAddNewProduct.Text = "Add New Product";
-            this.btnAddNewProduct.UseVisualStyleBackColor = true;
-            this.btnAddNewProduct.Click += new System.EventHandler(this.btnAddNewProduct_Click);
+            this.lblFromDate.AutoSize = true;
+            this.lblFromDate.Location = new System.Drawing.Point(667, 266);
+            this.lblFromDate.Name = "lblFromDate";
+            this.lblFromDate.Size = new System.Drawing.Size(57, 13);
+            this.lblFromDate.TabIndex = 11;
+            this.lblFromDate.Text = "From date:";
+            // 
+            // lblToDate
+            // 
+            this.lblToDate.AutoSize = true;
+            this.lblToDate.Location = new System.Drawing.Point(667, 287);
+            this.lblToDate.Name = "lblToDate";
+            this.lblToDate.Size = new System.Drawing.Size(47, 13);
+            this.lblToDate.TabIndex = 12;
+            this.lblToDate.Text = "To date:";
             // 
             // CategoriesForm
             // 
@@ -219,5 +271,10 @@
         private System.Windows.Forms.Label lblAutomaticOrder;
         private System.Windows.Forms.Button btnShowProductDetails;
         private System.Windows.Forms.Button btnAddNewProduct;
+        private System.Windows.Forms.DateTimePicker dtpDateTo;
+        private System.Windows.Forms.DateTimePicker dtpDateFrom;
+        private System.Windows.Forms.Button btnShowProductOrders;
+        private System.Windows.Forms.Label lblToDate;
+        private System.Windows.Forms.Label lblFromDate;
     }
 }
