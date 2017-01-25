@@ -15,7 +15,7 @@ namespace PABPProjekat1.src.Categories
 {
     public partial class CategoriesForm : Form
     {
-        // Aleksa TODO: impelement on form show
+        // Aleksa TODO: impelement on form show !!!
         DB.NorthwindDataSet nwds;
         DB.NorthwindDataSetTableAdapters.CategoriesTableAdapter categoriesTableAdapter;
         DB.NorthwindDataSetTableAdapters.ProductsTableAdapter productsTableAdapter;
@@ -221,10 +221,16 @@ namespace PABPProjekat1.src.Categories
 
         private void btnShowProductDetails_Click(object sender, EventArgs e)
         {
-            // Aleksa TODO: uncomment this later maybe?
-            // FormProvider.FormProvider.CategoriesForm.Hide();
-            Int32 productId =  (Int32)((DataRowView)productsBindingSource.Current).Row["ProductID"];
+            FormProvider.FormProvider.CategoriesForm.Hide();
+            Int32 productId = (Int32)((DataRowView)productsBindingSource.Current).Row["ProductID"];
             FormProvider.FormProvider.ProductForm = new ProductForm(productId.ToString());
+            FormProvider.FormProvider.ProductForm.Show();
+        }
+
+        private void btnAddNewProduct_Click(object sender, EventArgs e)
+        {
+            FormProvider.FormProvider.CategoriesForm.Hide();
+            FormProvider.FormProvider.ProductForm = new ProductForm();
             FormProvider.FormProvider.ProductForm.Show();
         }
     }

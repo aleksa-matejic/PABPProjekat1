@@ -33,13 +33,14 @@
             this.gbCategories = new System.Windows.Forms.GroupBox();
             this.dgvCategories = new System.Windows.Forms.DataGridView();
             this.gbProducts = new System.Windows.Forms.GroupBox();
+            this.btnShowProductDetails = new System.Windows.Forms.Button();
             this.lblMax = new System.Windows.Forms.Label();
             this.lblMin = new System.Windows.Forms.Label();
             this.nudMax = new System.Windows.Forms.NumericUpDown();
             this.nudMin = new System.Windows.Forms.NumericUpDown();
             this.lblAutomaticOrder = new System.Windows.Forms.Label();
             this.dgvProducts = new System.Windows.Forms.DataGridView();
-            this.btnShowProductDetails = new System.Windows.Forms.Button();
+            this.btnAddNewProduct = new System.Windows.Forms.Button();
             this.gbCategories.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCategories)).BeginInit();
             this.gbProducts.SuspendLayout();
@@ -92,6 +93,7 @@
             // 
             // gbProducts
             // 
+            this.gbProducts.Controls.Add(this.btnAddNewProduct);
             this.gbProducts.Controls.Add(this.btnShowProductDetails);
             this.gbProducts.Controls.Add(this.lblMax);
             this.gbProducts.Controls.Add(this.lblMin);
@@ -105,6 +107,16 @@
             this.gbProducts.TabIndex = 2;
             this.gbProducts.TabStop = false;
             this.gbProducts.Text = "Products";
+            // 
+            // btnShowProductDetails
+            // 
+            this.btnShowProductDetails.Location = new System.Drawing.Point(661, 116);
+            this.btnShowProductDetails.Name = "btnShowProductDetails";
+            this.btnShowProductDetails.Size = new System.Drawing.Size(175, 23);
+            this.btnShowProductDetails.TabIndex = 6;
+            this.btnShowProductDetails.Text = "Show Product Details";
+            this.btnShowProductDetails.UseVisualStyleBackColor = true;
+            this.btnShowProductDetails.Click += new System.EventHandler(this.btnShowProductDetails_Click);
             // 
             // lblMax
             // 
@@ -157,15 +169,15 @@
             this.dgvProducts.TabIndex = 0;
             this.dgvProducts.SelectionChanged += new System.EventHandler(this.dgvProducts_SelectionChanged);
             // 
-            // btnShowProductDetails
+            // btnAddNewProduct
             // 
-            this.btnShowProductDetails.Location = new System.Drawing.Point(661, 116);
-            this.btnShowProductDetails.Name = "btnShowProductDetails";
-            this.btnShowProductDetails.Size = new System.Drawing.Size(175, 23);
-            this.btnShowProductDetails.TabIndex = 6;
-            this.btnShowProductDetails.Text = "Show Product Details";
-            this.btnShowProductDetails.UseVisualStyleBackColor = true;
-            this.btnShowProductDetails.Click += new System.EventHandler(this.btnShowProductDetails_Click);
+            this.btnAddNewProduct.Location = new System.Drawing.Point(661, 145);
+            this.btnAddNewProduct.Name = "btnAddNewProduct";
+            this.btnAddNewProduct.Size = new System.Drawing.Size(175, 23);
+            this.btnAddNewProduct.TabIndex = 7;
+            this.btnAddNewProduct.Text = "Add New Product";
+            this.btnAddNewProduct.UseVisualStyleBackColor = true;
+            this.btnAddNewProduct.Click += new System.EventHandler(this.btnAddNewProduct_Click);
             // 
             // CategoriesForm
             // 
@@ -206,5 +218,6 @@
         private System.Windows.Forms.NumericUpDown nudMin;
         private System.Windows.Forms.Label lblAutomaticOrder;
         private System.Windows.Forms.Button btnShowProductDetails;
+        private System.Windows.Forms.Button btnAddNewProduct;
     }
 }

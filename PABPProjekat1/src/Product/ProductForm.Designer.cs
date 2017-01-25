@@ -51,6 +51,8 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.cbSupplierId = new System.Windows.Forms.ComboBox();
+            this.btnAddNew = new System.Windows.Forms.Button();
+            this.btnDelete = new System.Windows.Forms.Button();
             lblProductId = new System.Windows.Forms.Label();
             lblProductName = new System.Windows.Forms.Label();
             lblSupplierId = new System.Windows.Forms.Label();
@@ -72,13 +74,6 @@
             lblProductId.TabIndex = 1;
             lblProductId.Text = "Product ID:";
             // 
-            // tbProductId
-            // 
-            this.tbProductId.Location = new System.Drawing.Point(108, 12);
-            this.tbProductId.Name = "tbProductId";
-            this.tbProductId.Size = new System.Drawing.Size(154, 20);
-            this.tbProductId.TabIndex = 2;
-            // 
             // lblProductName
             // 
             lblProductName.AutoSize = true;
@@ -87,13 +82,6 @@
             lblProductName.Size = new System.Drawing.Size(78, 13);
             lblProductName.TabIndex = 3;
             lblProductName.Text = "Product Name:";
-            // 
-            // tbProductName
-            // 
-            this.tbProductName.Location = new System.Drawing.Point(108, 38);
-            this.tbProductName.Name = "tbProductName";
-            this.tbProductName.Size = new System.Drawing.Size(154, 20);
-            this.tbProductName.TabIndex = 4;
             // 
             // lblSupplierId
             // 
@@ -122,13 +110,6 @@
             lblQuantityPerUnit.TabIndex = 9;
             lblQuantityPerUnit.Text = "Quantity Per Unit:";
             // 
-            // tbQuantityPerUnit
-            // 
-            this.tbQuantityPerUnit.Location = new System.Drawing.Point(108, 116);
-            this.tbQuantityPerUnit.Name = "tbQuantityPerUnit";
-            this.tbQuantityPerUnit.Size = new System.Drawing.Size(154, 20);
-            this.tbQuantityPerUnit.TabIndex = 10;
-            // 
             // lblUnitPrice
             // 
             lblUnitPrice.AutoSize = true;
@@ -137,13 +118,6 @@
             lblUnitPrice.Size = new System.Drawing.Size(56, 13);
             lblUnitPrice.TabIndex = 11;
             lblUnitPrice.Text = "Unit Price:";
-            // 
-            // tbUnitPrice
-            // 
-            this.tbUnitPrice.Location = new System.Drawing.Point(108, 142);
-            this.tbUnitPrice.Name = "tbUnitPrice";
-            this.tbUnitPrice.Size = new System.Drawing.Size(154, 20);
-            this.tbUnitPrice.TabIndex = 12;
             // 
             // lblUnitsInStock
             // 
@@ -154,13 +128,6 @@
             lblUnitsInStock.TabIndex = 13;
             lblUnitsInStock.Text = "Units In Stock:";
             // 
-            // tbUnitsInStock
-            // 
-            this.tbUnitsInStock.Location = new System.Drawing.Point(108, 168);
-            this.tbUnitsInStock.Name = "tbUnitsInStock";
-            this.tbUnitsInStock.Size = new System.Drawing.Size(154, 20);
-            this.tbUnitsInStock.TabIndex = 14;
-            // 
             // lblUnitsOnOrder
             // 
             lblUnitsOnOrder.AutoSize = true;
@@ -169,13 +136,6 @@
             lblUnitsOnOrder.Size = new System.Drawing.Size(80, 13);
             lblUnitsOnOrder.TabIndex = 15;
             lblUnitsOnOrder.Text = "Units On Order:";
-            // 
-            // tbUnitsOnOrder
-            // 
-            this.tbUnitsOnOrder.Location = new System.Drawing.Point(108, 194);
-            this.tbUnitsOnOrder.Name = "tbUnitsOnOrder";
-            this.tbUnitsOnOrder.Size = new System.Drawing.Size(154, 20);
-            this.tbUnitsOnOrder.TabIndex = 16;
             // 
             // lblReorderLevel
             // 
@@ -186,13 +146,6 @@
             lblReorderLevel.TabIndex = 17;
             lblReorderLevel.Text = "Reorder Level:";
             // 
-            // tbReorderLevel
-            // 
-            this.tbReorderLevel.Location = new System.Drawing.Point(108, 220);
-            this.tbReorderLevel.Name = "tbReorderLevel";
-            this.tbReorderLevel.Size = new System.Drawing.Size(154, 20);
-            this.tbReorderLevel.TabIndex = 18;
-            // 
             // lblDiscontinued
             // 
             lblDiscontinued.AutoSize = true;
@@ -201,6 +154,55 @@
             lblDiscontinued.Size = new System.Drawing.Size(72, 13);
             lblDiscontinued.TabIndex = 19;
             lblDiscontinued.Text = "Discontinued:";
+            // 
+            // tbProductId
+            // 
+            this.tbProductId.Location = new System.Drawing.Point(108, 12);
+            this.tbProductId.Name = "tbProductId";
+            this.tbProductId.Size = new System.Drawing.Size(154, 20);
+            this.tbProductId.TabIndex = 2;
+            // 
+            // tbProductName
+            // 
+            this.tbProductName.Location = new System.Drawing.Point(108, 38);
+            this.tbProductName.Name = "tbProductName";
+            this.tbProductName.Size = new System.Drawing.Size(154, 20);
+            this.tbProductName.TabIndex = 4;
+            // 
+            // tbQuantityPerUnit
+            // 
+            this.tbQuantityPerUnit.Location = new System.Drawing.Point(108, 116);
+            this.tbQuantityPerUnit.Name = "tbQuantityPerUnit";
+            this.tbQuantityPerUnit.Size = new System.Drawing.Size(154, 20);
+            this.tbQuantityPerUnit.TabIndex = 10;
+            // 
+            // tbUnitPrice
+            // 
+            this.tbUnitPrice.Location = new System.Drawing.Point(108, 142);
+            this.tbUnitPrice.Name = "tbUnitPrice";
+            this.tbUnitPrice.Size = new System.Drawing.Size(154, 20);
+            this.tbUnitPrice.TabIndex = 12;
+            // 
+            // tbUnitsInStock
+            // 
+            this.tbUnitsInStock.Location = new System.Drawing.Point(108, 168);
+            this.tbUnitsInStock.Name = "tbUnitsInStock";
+            this.tbUnitsInStock.Size = new System.Drawing.Size(154, 20);
+            this.tbUnitsInStock.TabIndex = 14;
+            // 
+            // tbUnitsOnOrder
+            // 
+            this.tbUnitsOnOrder.Location = new System.Drawing.Point(108, 194);
+            this.tbUnitsOnOrder.Name = "tbUnitsOnOrder";
+            this.tbUnitsOnOrder.Size = new System.Drawing.Size(154, 20);
+            this.tbUnitsOnOrder.TabIndex = 16;
+            // 
+            // tbReorderLevel
+            // 
+            this.tbReorderLevel.Location = new System.Drawing.Point(108, 220);
+            this.tbReorderLevel.Name = "tbReorderLevel";
+            this.tbReorderLevel.Size = new System.Drawing.Size(154, 20);
+            this.tbReorderLevel.TabIndex = 18;
             // 
             // cbDiscontinued
             // 
@@ -256,11 +258,33 @@
             this.cbSupplierId.Size = new System.Drawing.Size(154, 21);
             this.cbSupplierId.TabIndex = 26;
             // 
+            // btnAddNew
+            // 
+            this.btnAddNew.Location = new System.Drawing.Point(191, 251);
+            this.btnAddNew.Name = "btnAddNew";
+            this.btnAddNew.Size = new System.Drawing.Size(75, 23);
+            this.btnAddNew.TabIndex = 27;
+            this.btnAddNew.Text = "Add New";
+            this.btnAddNew.UseVisualStyleBackColor = true;
+            this.btnAddNew.Click += new System.EventHandler(this.btnAddNew_Click);
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.Location = new System.Drawing.Point(191, 251);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(75, 23);
+            this.btnDelete.TabIndex = 28;
+            this.btnDelete.Text = "Delete";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
             // ProductForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(274, 308);
+            this.Controls.Add(this.btnDelete);
+            this.Controls.Add(this.btnAddNew);
             this.Controls.Add(this.cbSupplierId);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnSave);
@@ -286,6 +310,7 @@
             this.Controls.Add(this.cbDiscontinued);
             this.Name = "ProductForm";
             this.Text = "Product";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ProductForm_FormClosing);
             this.Load += new System.EventHandler(this.ProductForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -306,5 +331,7 @@
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.ComboBox cbSupplierId;
+        private System.Windows.Forms.Button btnAddNew;
+        private System.Windows.Forms.Button btnDelete;
     }
 }
