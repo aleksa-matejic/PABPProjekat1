@@ -78,35 +78,39 @@ namespace PABPProjekat1.src.Orders
             }
 
             // Aleksa: calculating sum of product in selected orders
-            string select = "ProductID = " + productId + " AND OrderID IN (";
-            int counter = 1;
-            foreach (DataGridViewRow row in dgvOrders.Rows)
+            if (dgvOrders.RowCount > 1)
             {
-                if(dgvOrders.Rows[counter].Cells["OrderID"].Value != null)
+                string select = "ProductID = " + productId + " AND OrderID IN (";
+                int counter = 1;
+                foreach (DataGridViewRow row in dgvOrders.Rows)
                 {
-                    int orderId = (int)dgvOrders.Rows[counter].Cells["OrderID"].Value;
-                    if (counter == 1)
+                    if (dgvOrders.Rows[counter].Cells["OrderID"].Value != null)
                     {
-                        select += "'" + orderId + "'";
+                        int orderId = (int)dgvOrders.Rows[counter].Cells["OrderID"].Value;
+                        if (counter == 1)
+                        {
+                            select += "'" + orderId + "'";
+                        }
+                        else
+                        {
+                            select += ", '" + orderId + "'";
+                        }
+                        counter++;
                     }
-                    else
-                    {
-                        select += ", '" + orderId + "'";
-                    }
-                    counter++;
+
                 }
-                
-            }
-            select += ")";
+                select += ")";
 
-            decimal sum = 0;
-            DataRow[] orderDetailsRows = nwds.Order_Details.Select(select);
-            foreach (DataRow row in orderDetailsRows)
-            {
-                sum += (decimal)row["UnitPrice"];
-            }
+                decimal sum = 0;
+                DataRow[] orderDetailsRows = nwds.Order_Details.Select(select);
+                foreach (DataRow row in orderDetailsRows)
+                {
+                    sum += (decimal)row["UnitPrice"];
+                }
 
-            lblSum.Text += sum.ToString();
+                lblSum.Text += sum.ToString();
+            }
+            
         }
 
         private void OrdersForm_FormClosing(object sender, FormClosingEventArgs e)
