@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PABPProjekat1.src.Report;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -40,7 +41,6 @@ namespace PABPProjekat1.src.Orders
 
         private void OrdersForm_Load(object sender, EventArgs e)
         {
-            // Aleksa TODO: implementation
             orderDetailsTableAdapter.Fill(nwds.Order_Details);
             ordersTableAdapter.Fill(nwds.Orders);
             productsBindingSource.DataSource = nwds.Products;
@@ -74,6 +74,14 @@ namespace PABPProjekat1.src.Orders
             else
             {
                 MessageBox.Show("No orders for selected product!");
+                this.Close();
+            }
+
+            int rowCount = dgvOrders.RowCount;
+
+            if(rowCount < 2)
+            {
+                MessageBox.Show("No orders for selected date!");
                 this.Close();
             }
 
@@ -116,6 +124,12 @@ namespace PABPProjekat1.src.Orders
         private void OrdersForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             FormProvider.FormProvider.CategoriesForm.Show();
+        }
+
+        private void btnCreateReport_Click(object sender, EventArgs e)
+        {
+            Form tmp = new ReportForm(productId, dtpDateFrom.Value.ToString("yyyy-MM-dd"), dtpDateTo.Value.ToString("yyyy-MM-dd"));
+            tmp.Show();
         }
     }
 }

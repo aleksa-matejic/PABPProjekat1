@@ -17,9 +17,7 @@ namespace PABPProjekat1.src.Product
         DB.NorthwindDataSetTableAdapters.CategoriesTableAdapter categoriesTableAdapter;
         DB.NorthwindDataSetTableAdapters.ProductsTableAdapter productsTableAdapter;
         DB.NorthwindDataSetTableAdapters.SuppliersTableAdapter suppliersTableAdapter;
-        BindingSource categoriesBindingSource;
         BindingSource productsBindingSource;
-        BindingSource suppliersBindingSource;
         string productId;
 
         Type type;
@@ -195,6 +193,7 @@ namespace PABPProjekat1.src.Product
                 {
                     throw new Exception("Product update unsuccessful!");
                 }
+                FormProvider.FormProvider.CategoriesForm.Reload();
             }
             catch (Exception exc)
             {
@@ -242,6 +241,7 @@ namespace PABPProjekat1.src.Product
                 res = productsTableAdapter.Update(nwds.Products);
                 if (res == 1)
                 {
+                    FormProvider.FormProvider.CategoriesForm.Reload();
                     MessageBox.Show("Product successfully added.");
                     // Aleksa TODO: clear fields instead of closing form
                     this.Close();
@@ -274,6 +274,7 @@ namespace PABPProjekat1.src.Product
                 res = productsTableAdapter.Update(nwds.Products);
                 if (res == 1)
                 {
+                    FormProvider.FormProvider.CategoriesForm.Reload();
                     MessageBox.Show("Product successfully deleted.");
                     this.Close();
                 }
@@ -286,6 +287,12 @@ namespace PABPProjekat1.src.Product
             {
                 MessageBox.Show(exc.Message);
             }
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            // Aleksa TODO: modify to use singleton
+            this.Close();
         }
     }
 }

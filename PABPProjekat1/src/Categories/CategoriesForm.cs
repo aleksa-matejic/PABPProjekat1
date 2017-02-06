@@ -16,7 +16,6 @@ namespace PABPProjekat1.src.Categories
 {
     public partial class CategoriesForm : Form
     {
-        // Aleksa TODO: impelement on form show !!!
         DB.NorthwindDataSet nwds;
         DB.NorthwindDataSetTableAdapters.CategoriesTableAdapter categoriesTableAdapter;
         DB.NorthwindDataSetTableAdapters.ProductsTableAdapter productsTableAdapter;
@@ -34,11 +33,7 @@ namespace PABPProjekat1.src.Categories
 
             this.lblUsername.Font = new Font(lblUsername.Font, FontStyle.Bold | FontStyle.Underline | FontStyle.Italic);
 
-            nwds = new DB.NorthwindDataSet();
-            categoriesTableAdapter = new DB.NorthwindDataSetTableAdapters.CategoriesTableAdapter();
-            productsTableAdapter = new DB.NorthwindDataSetTableAdapters.ProductsTableAdapter();
-            categoriesBindingSource = new BindingSource();
-            productsBindingSource = new BindingSource();
+            lblUsername.Text = UserSession.Instance.Username;
 
             this.nudMin.Value = 10;
             this.nudMax.Value = 100;
@@ -46,36 +41,7 @@ namespace PABPProjekat1.src.Categories
 
         private void CategoriesForm_Load(object sender, EventArgs e)
         {
-            lblUsername.Text = UserSession.Instance.Username;
-
-            productsTableAdapter.Fill(nwds.Products);
-            categoriesTableAdapter.Fill(nwds.Categories);
-
-            productsBindingSource.DataSource = nwds.Products;
-            categoriesBindingSource.DataSource = nwds.Categories;
-
-            // Aleksa: creating filter for selecting proper categories
-            DataRow[] products = nwds.Products.Select("SupplierID = " + UserSession.Instance.SupplierID);
-            string filter = "CategoryID IN (";
-            int index = 0;
-            foreach(DataRow product in products)
-            {
-                if (index == 0)
-                {
-                    filter += "'" + product["CategoryID"] + "'";
-                }
-                else
-                {
-                    filter += ", '" + product["CategoryID"] + "'";
-                }
-                index++;
-            }
-            filter += ")";
-
-            categoriesBindingSource.Filter = filter;
-
-            dgvProducts.DataSource = productsBindingSource;
-            dgvCategories.DataSource = categoriesBindingSource;
+            this.Reload();
         }
 
         private void LoadChildData(DataGridViewRow row)
@@ -169,8 +135,6 @@ namespace PABPProjekat1.src.Categories
         {
             short selectedUnitsInStock = (short)((DataRowView)productsBindingSource.Current).Row["UnitsInStock"];
             string selectedProductName = (string)((DataRowView)productsBindingSource.Current).Row["ProductName"];
-            // Aleksa TODO: use this in upper method
-            // Int32 tmp = (Int32)((DataRowView)categoriesBindingSource.Current).Row["CategoryID"];
 
             // Aleksa: check if units in stock for selected product is lower that minimum and ask user if wanna order to max
             if (AutomaticOrderRequired())
@@ -203,7 +167,7 @@ namespace PABPProjekat1.src.Categories
         public bool AutomaticOrderRequired()
         {
             bool value = false;
-            if(nudMin.Value < nudMax.Value)
+            if (nudMin.Value < nudMax.Value)
             {
                 short unitsInStock = (short)((DataRowView)productsBindingSource.Current).Row["UnitsInStock"];
                 if (unitsInStock < nudMin.Value)
@@ -213,7 +177,6 @@ namespace PABPProjekat1.src.Categories
             }
             else
             {
-                // Aleksa TODO: implement automatic check
                 MessageBox.Show("Min is grater than max. Please review your input!");
                 value = false;
             }
@@ -243,6 +206,44 @@ namespace PABPProjekat1.src.Categories
             FormProvider.FormProvider.CategoriesForm.Hide();
             FormProvider.FormProvider.OrdersForm = new OrdersForm(productId, dtpDateFrom, dtpDateTo);
             FormProvider.FormProvider.OrdersForm.Show();
+        }
+
+        public void Reload()
+        {
+            nwds = new DB.NorthwindDataSet();
+            categoriesTableAdapter = new DB.NorthwindDataSetTableAdapters.CategoriesTableAdapter();
+            productsTableAdapter = new DB.NorthwindDataSetTableAdapters.ProductsTableAdapter();
+            categoriesBindingSource = new BindingSource();
+            productsBindingSource = new BindingSource();
+
+            productsTableAdapter.Fill(nwds.Products);
+            categoriesTableAdapter.Fill(nwds.Categories);
+
+            productsBindingSource.DataSource = nwds.Products;
+            categoriesBindingSource.DataSource = nwds.Categories;
+
+            // Aleksa: creating filter for selecting proper categories
+            DataRow[] products = nwds.Products.Select("SupplierID = " + UserSession.Instance.SupplierID);
+            string filter = "CategoryID IN (";
+            int index = 0;
+            foreach (DataRow product in products)
+            {
+                if (index == 0)
+                {
+                    filter += "'" + product["CategoryID"] + "'";
+                }
+                else
+                {
+                    filter += ", '" + product["CategoryID"] + "'";
+                }
+                index++;
+            }
+            filter += ")";
+
+            categoriesBindingSource.Filter = filter;
+
+            dgvProducts.DataSource = productsBindingSource;
+            dgvCategories.DataSource = categoriesBindingSource;
         }
     }
 }

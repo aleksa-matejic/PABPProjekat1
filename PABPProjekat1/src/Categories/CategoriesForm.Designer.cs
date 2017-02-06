@@ -33,6 +33,8 @@
             this.gbCategories = new System.Windows.Forms.GroupBox();
             this.dgvCategories = new System.Windows.Forms.DataGridView();
             this.gbProducts = new System.Windows.Forms.GroupBox();
+            this.lblToDate = new System.Windows.Forms.Label();
+            this.lblFromDate = new System.Windows.Forms.Label();
             this.dtpDateTo = new System.Windows.Forms.DateTimePicker();
             this.dtpDateFrom = new System.Windows.Forms.DateTimePicker();
             this.btnShowProductOrders = new System.Windows.Forms.Button();
@@ -44,8 +46,6 @@
             this.nudMin = new System.Windows.Forms.NumericUpDown();
             this.lblAutomaticOrder = new System.Windows.Forms.Label();
             this.dgvProducts = new System.Windows.Forms.DataGridView();
-            this.lblFromDate = new System.Windows.Forms.Label();
-            this.lblToDate = new System.Windows.Forms.Label();
             this.gbCategories.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCategories)).BeginInit();
             this.gbProducts.SuspendLayout();
@@ -117,6 +117,24 @@
             this.gbProducts.TabIndex = 2;
             this.gbProducts.TabStop = false;
             this.gbProducts.Text = "Products";
+            // 
+            // lblToDate
+            // 
+            this.lblToDate.AutoSize = true;
+            this.lblToDate.Location = new System.Drawing.Point(667, 287);
+            this.lblToDate.Name = "lblToDate";
+            this.lblToDate.Size = new System.Drawing.Size(47, 13);
+            this.lblToDate.TabIndex = 12;
+            this.lblToDate.Text = "To date:";
+            // 
+            // lblFromDate
+            // 
+            this.lblFromDate.AutoSize = true;
+            this.lblFromDate.Location = new System.Drawing.Point(667, 266);
+            this.lblFromDate.Name = "lblFromDate";
+            this.lblFromDate.Size = new System.Drawing.Size(57, 13);
+            this.lblFromDate.TabIndex = 11;
+            this.lblFromDate.Text = "From date:";
             // 
             // dtpDateTo
             // 
@@ -212,24 +230,6 @@
             this.dgvProducts.Size = new System.Drawing.Size(623, 296);
             this.dgvProducts.TabIndex = 0;
             this.dgvProducts.SelectionChanged += new System.EventHandler(this.dgvProducts_SelectionChanged);
-            // 
-            // lblFromDate
-            // 
-            this.lblFromDate.AutoSize = true;
-            this.lblFromDate.Location = new System.Drawing.Point(667, 266);
-            this.lblFromDate.Name = "lblFromDate";
-            this.lblFromDate.Size = new System.Drawing.Size(57, 13);
-            this.lblFromDate.TabIndex = 11;
-            this.lblFromDate.Text = "From date:";
-            // 
-            // lblToDate
-            // 
-            this.lblToDate.AutoSize = true;
-            this.lblToDate.Location = new System.Drawing.Point(667, 287);
-            this.lblToDate.Name = "lblToDate";
-            this.lblToDate.Size = new System.Drawing.Size(47, 13);
-            this.lblToDate.TabIndex = 12;
-            this.lblToDate.Text = "To date:";
             // 
             // CategoriesForm
             // 

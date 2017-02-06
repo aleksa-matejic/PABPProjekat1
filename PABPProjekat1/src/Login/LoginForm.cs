@@ -43,8 +43,8 @@ namespace PABPProjekat1.src.Login
             // Aleksa TODO: ask if session is active and go to categories automatically
 
             // Aleksa TODO: for testing purposes only, comment this for production
-            tbUsername.Text = "Exotic Liquids";
-            tbPassword.Text = "1715552222EC14SD";
+            // tbUsername.Text = "Exotic Liquids";
+            // tbPassword.Text = "1715552222EC14SD";
             // tbUsername.Text = "Cisco";
             // tbPassword.Text = "064249189811130";
 
@@ -67,14 +67,19 @@ namespace PABPProjekat1.src.Login
 
         private void Login()
         {
-            if(tbUsername.Text == String.Empty)
+            tbUsername.BackColor = Color.White;
+            tbPassword.BackColor = Color.White;
+
+            if (tbUsername.Text == String.Empty)
             {
+                tbUsername.BackColor = Color.Red;
                 MessageBox.Show("Input your username first!");
                 return;
             }
             
             if (tbPassword.Text == String.Empty)
             {
+                tbPassword.BackColor = Color.Red;
                 MessageBox.Show("Input your password first!");
                 return;
             }
@@ -122,7 +127,7 @@ namespace PABPProjekat1.src.Login
             }
             catch(Exception e)
             {
-                MessageBox.Show("Exception: " + e.Message);
+                MessageBox.Show(e.Message);
             }
 
         }
@@ -148,6 +153,22 @@ namespace PABPProjekat1.src.Login
             }
 
             return value;
+        }
+
+        private void tbUsername_Enter(object sender, EventArgs e)
+        {
+            if(tbUsername.BackColor == Color.Red)
+            {
+                tbUsername.BackColor = Color.White;
+            }
+        }
+
+        private void tbPassword_Enter(object sender, EventArgs e)
+        {
+            if (tbPassword.BackColor == Color.Red)
+            {
+                tbPassword.BackColor = Color.White;
+            }
         }
     }
 }

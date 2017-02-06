@@ -83,6 +83,7 @@
             this.tbUsername.Name = "tbUsername";
             this.tbUsername.Size = new System.Drawing.Size(137, 20);
             this.tbUsername.TabIndex = 4;
+            this.tbUsername.Enter += new System.EventHandler(this.tbUsername_Enter);
             // 
             // tbPassword
             // 
@@ -90,6 +91,7 @@
             this.tbPassword.Name = "tbPassword";
             this.tbPassword.Size = new System.Drawing.Size(137, 20);
             this.tbPassword.TabIndex = 5;
+            this.tbPassword.Enter += new System.EventHandler(this.tbPassword_Enter);
             // 
             // northwindDataSet
             // 

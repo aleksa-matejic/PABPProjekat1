@@ -23,11 +23,20 @@ namespace PABPProjekat1.src.DB
 
             DataRow[] dataRows = nwds.Suppliers.Select("CompanyName = '" + companyName + "'");
 
-            // Aleksa TODO: datarow more than one result
+            
             if(dataRows.Length == 1)
             {
                 s = new Supplier();
                 s.Load(dataRows[0]);
+            }
+            else if(dataRows.Length > 1)
+            {
+                // Aleksa: datarow more than one result is not alowed at the moment
+                throw new NotImplementedException("More than one result in DB is not alowed at the moment!");
+            }
+            else
+            {
+                throw new Exception("No record found for CompanyName = '" + companyName + "'");
             }
 
             return s;

@@ -42,16 +42,12 @@ namespace PABPProjekat1.src.DB
         public int CategoryID { get; set; }
         public string CategoryName { get; set; }
         public string Description { get; set; }
-        // Aleksa TODO: image
-        // public Image Picture { get; set; }
 
         public void Load(SqlDataReader reader)
         {
             CategoryID = Int32.Parse(reader["CategoryID"].ToString());
             CategoryName = reader["CategoryName"].ToString();
             Description = reader["Description"].ToString();
-            // Aleksa TODO: change type if needed
-            // Picture = Image.reader["Picture"].ToString();
         }
     }
 }
